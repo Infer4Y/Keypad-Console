@@ -18,7 +18,6 @@ To use I would reccomend the latest release of this library and set up your proj
 
 ```Cpp
 #include <Adafruit_GFX.h>
-#include <gfxfont.h> 
 
 #include <SPI.h>
 
@@ -50,11 +49,11 @@ void gameUpdate(){
     (dirX) ? x+=5 : x-=5;
     (dirY) ? y+=10 : y-=10;
 
-    dirX = (!x-10 >= 118);
-    dirY = !(Y-10 >= 118);
+    dirX = !(x-10 >= 118);
+    dirY = !(y-10 >= 118);
 
     dirX = (x-10 <= 0);
-    dirY = (Y-10 <= 0);
+    dirY = (y-10 <= 0);
 
 }
 
