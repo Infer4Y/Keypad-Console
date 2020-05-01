@@ -7,13 +7,15 @@
 class Display
 {
   public:
-    Display(TFT_ILI9163C display);
-    Display(TFT_ILI9163C display, int resetPin);
+    Display(void);
+    Display(const TFT_ILI9163C);      //tft
+    Display(const TFT_ILI9163C, int); // tft , reset
     void begin();
     void draw(); // Left for the user to define
+    TFT_ILI9163C getDisplay();
   private:
     TFT_ILI9163C _display;
-    int _res
+    int _res;
 };
 
 #endif
