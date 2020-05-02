@@ -1,7 +1,11 @@
 Sprite KEYWORD1
 draw   KEYWORD2
 
-DISPLAY KEYWORD1
+Display KEYWORD1
+begin   KEYWORD2
+draw    KEYWORD2
+getDisplay KEYWORD2
+getColorFromRef KEYWORD2
 
 
 BLACK   KEYWORD1

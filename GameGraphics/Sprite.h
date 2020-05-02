@@ -5,14 +5,18 @@
 #include "Arduino.h"
 #include "Display.h"
 
+struct PixelLine{
+    int data[SPRITEWIDTH];
+};
+
 class Sprite {
   public:
-    Sprite(const Display, int [][SPRITEWIDTH]);
+    Sprite(Display, PixelLine*);
     void draw(int, int);     // X, Y
     void draw(int, int, int); // X, Y, Scale
   private:
     Display _display;
-    int _image[][SPRITEWIDTH];
+    PixelLine *_image;
 };
 
 #endif

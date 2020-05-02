@@ -3,17 +3,15 @@
 
 #include <TFT_ILI9163C.h>
 
-TFT_ILI9163C::TFT_ILI9163C(void){};
-
-void Display::Display(const TFT_ILI9163C display) {
-    _display = display;
-    _res = -1; // Set to negitive one incase the user wants to try reseting the display they can check if the pin is set.
+Display::Display(TFT_ILI9163C* display) {
+    this->_display = display;
+    this->_res = -1; // Set to negitive one incase the user wants to try reseting the display they can check if the pin is set.
 };
 
-void Display::Display(const TFT_ILI9163C display, int resetPin){
-    _display = display;
+Display::Display(TFT_ILI9163C* display, int resetPin){
+    this->_display = display;
     pinMode(resetPin, OUTPUT);
-    _res = resetPin;
+    this->_res = resetPin;
 };
 
 void Display::begin(){
@@ -23,9 +21,9 @@ void Display::begin(){
         digitalWrite(_res, HIGH);
     }
 
-    _display.begin();
+    _display->begin();
 };
 
-TFT_ILI9163C Display::getDisplay(){
+TFT_ILI9163C* Display::getDisplay(){
     return _display;
 };

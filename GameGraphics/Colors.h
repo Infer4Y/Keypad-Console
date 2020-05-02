@@ -1,6 +1,8 @@
 #ifndef Colors_h
 #define Colors_h
 
+#include "Arduino.h"
+
 #define BLACK   0x0000
 #define BLUE    0x001F
 #define RED     0xF800
@@ -10,21 +12,5 @@
 #define YELLOW  0xFFE0
 #define WHITE   0xFFFF
 
-int16_t getColor(int id) {
-  switch (id) {
-    case 0 :
-      return BLACK;
-    case 1 :
-      return YELLOW;
-    case 2 :
-      return RED;
-    case 3 :
-      return MAGENTA;
-    case 4 :
-      return BLUE;
-    default :
-      return BLACK;
-  }
-}
-
+int16_t getColorFromRef(int id);
 #endif

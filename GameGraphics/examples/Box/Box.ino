@@ -10,32 +10,31 @@
 #define __DC 9
 #define __CS 10
 
-Display display = Display(TFT_ILI9163C(__CS, __DC));
+TFT_ILI9163C tft = TFT_ILI9163C(__CS, __DC);
+Display display = Display(&tft);
 
-int x = 0, oldX= 0, y = 0, oldY = 0;
+int x_0 = 128/2, x = 0, oldX= 0, y_0 = 128/2, y = 0, oldY = 0, R = 30;
+double t = 0;
+
 
 bool dirX = true, dirY = true;
 
 void setup(){
     display.begin();
+    display.getDisplay()->clearScreen();
 }
 
 void Display::draw(){
-    getDisplay().fillRect(oldX, oldY, 10, 10, BLACK);
-    getDisplay().fillRect(x, y, 10, 10, RED);
+    getDisplay()->fillRect(oldX, oldY, 10, 10, BLACK);
+    getDisplay()->fillRect(x, y, 10, 10, RED);
     oldX = x; oldY = y;
 }
 
 void gameUpdate(){
-    (dirX) ? x+=5 : x-=5;
-    (dirY) ? y+=10 : y-=10;
-
-    dirX = !(x-10 >= 118);
-    dirY = !(y-10 >= 118);
-
-    dirX = (x-10 <= 0);
-    dirY = (y-10 <= 0);
-
+    x = R*cos(t) + x_0;
+    y = R*sin(t) + y_0;
+    
+    (!(t < 2*PI)) ? t = 0 : t += 0.01;
 }
 
 void loop(){

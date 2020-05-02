@@ -5,7 +5,7 @@
 #include "Display.h"
 #include <TFT_ILI9163C.h>
 
-Sprite::Sprite(const Display &display, int image [][SPRITEWIDTH]) {
+Sprite::Sprite(Display display, PixelLine *image) {
     _display = display;
     _image = image;
 };
@@ -20,7 +20,7 @@ void Sprite::draw(int x, int y, int scale) {
         for (int j = 0; j < SPRITEWIDTH; j++) {
             int offX = (i != 0) ? scale : 0;
             int offY = (j != 0) ? scale : 0;
-            _display.getDisplay().fillRect(x + i + offX, y + j + offY, scale, scale, getColor(_image[j][i]));
+            _display.getDisplay()->fillRect(x + i + offX, y + j + offY, scale, scale, getColorFromRef(_image[j].data[i]));
         }
     }
 };
