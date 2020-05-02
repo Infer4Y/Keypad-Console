@@ -14,6 +14,7 @@
 #define MAGENTA    0xF81F
 #define PURPLE     0x2009
 #define PINK       0xFC5E
+#define ORANGE     0xFC40
 #define YELLOW     0xFFE0
 #define WHITE      0xFFFF
 #define BROWN      0x4900
