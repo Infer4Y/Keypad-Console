@@ -12,11 +12,13 @@ struct PixelLine{
 class Sprite {
   public:
     Sprite(Display, PixelLine*);
+    Sprite(Display, PixelLine*, int, int); // width and height
     void draw(int, int);     // X, Y
     void draw(int, int, int); // X, Y, Scale
   private:
     Display _display;
     PixelLine *_image;
+    int _width = SPRITEWIDTH, _height = SPRITEHEIGHT; 
 };
 
 #endif
