@@ -3,7 +3,17 @@ package inferno.spritemaker;
 import java.util.HashMap;
 
 public class ColorPallet {
+    public static final String DEFAULT = "defaultColors";
     private HashMap<Integer, Integer> colorMap = new HashMap<>();
+
+    private boolean isdefault = false;
+
+    public ColorPallet(String type) {
+        if (type.equalsIgnoreCase(DEFAULT));
+    }
+
+    public ColorPallet() {
+    }
 
     public void addColor(int ID, int COLOR){
         colorMap.put(ID, COLOR);
@@ -22,6 +32,6 @@ public class ColorPallet {
 
         builder+=("};\n");
 
-        return builder;
+        return isdefault ? "\n" : builder;
     }
 }

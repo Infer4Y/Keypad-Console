@@ -36,7 +36,7 @@ public class Pixel extends JButton {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Main.window.getPixelFormID(pixelID);
+            Main.window.getPixelFromID(pixelID);
         }
     }
 }

@@ -19,6 +19,15 @@ public class SpriteData {
 
     public int[][] dataToArrays(){
         int[][] spriteData = new int[data.size()][data.get(0).size()];
+        for (int i = 0; i < spriteData.length; i++) {
+            for (int j = 0; j < spriteData[i].length; j++) {
+                spriteData[i][j] = data.get(i).get(j);
+            }
+        }
+        return spriteData;
+    }
+
+    public String toCode(){
         return null;
     }
 

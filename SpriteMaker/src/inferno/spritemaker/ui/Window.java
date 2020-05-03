@@ -4,29 +4,31 @@ import inferno.spritemaker.ColorPallet;
 import inferno.spritemaker.Reference;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Window extends JFrame {
     private SpriteSize spriteSize;
     private JButton spriteConfirmButton;
-    private ColorPallet pallet = new ColorPallet();
+
+    private ColorPane colorPane;
+    private CodePane codePane;
+    private PixelPane pixelPane;
 
     public Window(){
         super("SpriteMaker V"+ Reference.VERSION + " | Sprite Size");
-        setSize(600, 400);
-        add(spriteSize = new SpriteSize(), CENTER_ALIGNMENT);
-        add(spriteConfirmButton = new JButton(), BOTTOM_ALIGNMENT);
-        spriteConfirmButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                remove(spriteSize);
-                remove(spriteConfirmButton);
-                setup(spriteSize.getSpriteWidth(), spriteSize.getSpriteHeight());
-
-            }
+        setLayout(new BorderLayout());
+        add(spriteSize = new SpriteSize(), BorderLayout.CENTER);
+        add(spriteConfirmButton = new JButton("Build"), BorderLayout.SOUTH);
+        spriteConfirmButton.addActionListener(e -> {
+            remove(spriteSize);
+            remove(spriteConfirmButton);
+            setup(spriteSize.getSpriteWidth(), spriteSize.getSpriteHeight());
         });
-
+        setSize(200,200);
+        setLocationRelativeTo(null);
 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,8 +36,21 @@ public class Window extends JFrame {
     }
 
     private void setup(int spriteWidth, int spriteHeight){
-
+        setTitle("SpriteMaker V"+ Reference.VERSION + " | Sprite Editor");
         // Add color bar and pixel canvas
+        add(colorPane = new ColorPane(), BorderLayout.LINE_START);
+        add(pixelPane = new PixelPane(spriteWidth, spriteHeight), BorderLayout.CENTER);
+        add(codePane = new CodePane(), BorderLayout.LINE_END);
+
+        colorPane.getAddColorButton().addActionListener(e -> {
+            //colorPane;
+        });
+
+        setSize(1200, 900);
+        setLocationRelativeTo(null);
     }
 
+    public int getPixelFromID(int pixelID) {
+        return colorPane.getCurrentColorID();
+    }
 }
