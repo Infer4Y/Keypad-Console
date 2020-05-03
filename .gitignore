@@ -1,2 +1,5 @@
 /.vscode/
 /SpriteMaker/.idea/
+/SpriteMaker/builds/
+/SpriteMaker/out/
+/SpriteMaker/lib/

@@ -41,3 +41,7 @@ ColorPallet defaultColorPallet = ColorPallet (new Color[]{
 int16_t getColorFromRef(int id) {
   return defaultColorPallet.getColorFromID(id);
 };
+
+ColorPallet getDefaultPallet(){
+  return defaultColorPallet;
+}

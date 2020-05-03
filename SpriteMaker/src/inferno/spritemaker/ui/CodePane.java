@@ -17,4 +17,9 @@ public class CodePane extends JPanel {
     public JButton getGenerate() {
         return generate;
     }
+
+
+    public JTextPane getOutput() {
+        return output;
+    }
 }

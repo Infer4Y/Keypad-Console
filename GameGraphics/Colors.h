@@ -22,6 +22,7 @@ class ColorPallet {
 }
 
 int16_t getColorFromRef(int id);
+ColorPallet getDefaultPallet();
 
 #define BLACK      getColorFromRef(0);
 #define DARK_BLUE  getColorFromRef(1);
@@ -38,4 +39,6 @@ int16_t getColorFromRef(int id);
 #define PINK       getColorFromRef(12);
 #define CYAN       getColorFromRef(13);
 #define YELLOW     getColorFromRef(14);
+
+#define DEFAULT_COLOR_PALLET getDefaultPallet();
 #endif

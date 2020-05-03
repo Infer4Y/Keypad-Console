@@ -4,6 +4,7 @@ import inferno.spritemaker.ColorPallet;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
 
 public class ColorPane extends JPanel {
@@ -15,13 +16,16 @@ public class ColorPane extends JPanel {
     private JButton addColorButton;
     JLabel colorNameLabel = new JLabel("Color Name : ");
     JTextField colorName = new JTextField("untitled");
+    int currentColorID = 0;
+
+    ColorTreeNode customColorNode = new ColorTreeNode("Custom Pallet",null,  0);
 
     public ColorPane() {
         setLayout(new BorderLayout());
+        colorTree = new JTree(customColorNode);
+        colorTree.getSelectionModel().setSelectionMode
+                (TreeSelectionModel.SINGLE_TREE_SELECTION);
 
-        ColorTreeNode top = new ColorTreeNode("Colors",null,  0);
-        setupTree(top);
-        colorTree = new JTree(top);
         add(colorChooser, BorderLayout.NORTH);
         add(treeView=new JScrollPane(colorTree), BorderLayout.CENTER);
         row.setLayout(new BorderLayout());
@@ -31,14 +35,9 @@ public class ColorPane extends JPanel {
         add(row, BorderLayout.SOUTH);
     }
 
-    ColorTreeNode customColorNode = new ColorTreeNode("Custom Pallet",null,  0);
-
-    private void setupTree(DefaultMutableTreeNode node){
-        node.add(customColorNode);
-    }
 
     public int getCurrentColorID() {
-        return 0;
+        return currentColorID;
     }
 
     public JButton getAddColorButton() {
@@ -47,5 +46,13 @@ public class ColorPane extends JPanel {
 
     public Color getCurrentColor() {
         return colorChooser.getColor();
+    }
+
+    public ColorPallet getColorPallet() {
+        return pallet;
+    }
+
+    public void setCurrentColorID(int colorID) {
+        currentColorID = colorID;
     }
 }

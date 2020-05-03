@@ -21,7 +21,15 @@ public class PixelPane extends JPanel {
         }
     }
 
+    public void updateSprite(){
+        spriteData.convertButtonData(pixels);
+    }
+
     public Pixel[][] getPixels() {
         return pixels;
+    }
+
+    public SpriteData getSpriteData() {
+        return spriteData;
     }
 }

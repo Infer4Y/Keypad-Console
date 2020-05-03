@@ -2,9 +2,12 @@ package inferno.spritemaker.ui;
 
 import inferno.spritemaker.ColorPallet;
 import inferno.spritemaker.Reference;
+import inferno.spritemaker.sprites.SpriteData;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,16 +46,68 @@ public class Window extends JFrame {
         add(codePane = new CodePane(), BorderLayout.LINE_END);
 
         colorPane.getAddColorButton().addActionListener(e -> {
+            colorPane.getColorPallet().addColor(colorPane.customColorNode.getChildCount(), Reference.toRGB565(colorPane.getCurrentColor()));
             ColorTreeNode temp = new ColorTreeNode(colorPane.colorName.getText(), colorPane.getCurrentColor(), colorPane.customColorNode.getChildCount());
             colorPane.customColorNode.add(temp);
             colorPane.colorTree.updateUI();
         });
 
+        colorPane.colorTree.addTreeSelectionListener(new TreeSelectionListener() {
+            @Override
+            public void valueChanged(TreeSelectionEvent e) {
+                ColorTreeNode node = (ColorTreeNode)
+                        colorPane.colorTree.getLastSelectedPathComponent();
+
+                if (node == null)
+                    return;
+
+                if (node.isLeaf()) {
+                    colorPane.setCurrentColorID(node.getID());
+                }
+            }
+        });
+
+        codePane.getGenerate().addActionListener(e -> {
+            pixelPane.updateSprite();
+            codePane.getOutput().setText(colorPane.getColorPallet().toCode()+ pixelPane.getSpriteData().toCode(spriteSize.spriteName.getText()));
+        });
+
+        genButtonHandle();
+
         setSize(1200, 900);
         setLocationRelativeTo(null);
     }
 
+    private void genButtonHandle(){
+        int pixelID = 0;
+        for (Pixel[] pixelRow : pixelPane.getPixels()){
+            for (Pixel pixel: pixelRow) {
+                pixel.addActionListener(Pixel.buildActionListener(pixelID));
+                pixelID++;
+            }
+        }
+    }
+
+    public void updatePixels(int IDPIXEL){
+        int pixelID = 0;
+        for (Pixel[] pixelRow : pixelPane.getPixels()){
+            for (Pixel pixel: pixelRow) {
+                if (IDPIXEL == pixelID){
+                    pixel.setColorId(colorPane.getCurrentColorID());
+                    pixel.setBackground(((ColorTreeNode) colorPane.colorTree.getLastSelectedPathComponent()).getColor());
+                    return;
+                }
+                pixelID++;
+            }
+        }
+    }
+
     public int getPixelFromID(int pixelID) {
+        updatePixels(pixelID);
         return colorPane.getCurrentColorID();
+    }
+
+    public String getSpriteName() {
+        return spriteSize.spriteName.getText();
     }
 }
