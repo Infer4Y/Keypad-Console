@@ -1,12 +1,12 @@
 #ifndef Sprite_h
 #define Sprite_h
 
-#include "_settings\Sprite_Settings.h"
+#include "_settings/Sprite_Settings.h"
 #include "Arduino.h"
 #include "Display.h"
 
 struct PixelLine{
-    int data[SPRITEWIDTH];
+    int *data;
 };
 
 class Sprite {

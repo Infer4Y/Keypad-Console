@@ -3,6 +3,8 @@
 
 #include <TFT_ILI9163C.h>
 
+Display::Display(){}
+
 Display::Display(TFT_ILI9163C* display) {
     this->_display = display;
     this->_res = -1; // Set to negitive one incase the user wants to try reseting the display they can check if the pin is set.

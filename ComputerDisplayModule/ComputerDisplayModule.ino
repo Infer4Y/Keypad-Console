@@ -5,6 +5,11 @@
 #include <SPI.h>
 
 #include <TFT_ILI9163C.h>
+#include <Display.h>
+#include <_settings/Sprite_Settings.h>
+#include <Sprite.h>
+#include <Colors.h>
+
 
 #define __CS1 10
 #define __DC 9
@@ -21,25 +26,32 @@ char hexaKeys[ROWS][COLS] = {
   {'*', '0', '#', 'D'}
 };
 
-int playerSprite[8][8] {
-  {0, 0, 2, 2, 1, 2, 0, 0},
-  {0, 2, 4, 2, 4, 1, 0, 0},
-  {0, 2, 3, 1, 2, 2, 0, 0},
-  {3, 2, 2, 2, 1, 2, 2, 0},
-  {0, 2, 2, 2, 2, 2, 2, 0},
-  {0, 0, 2, 2, 0, 2, 2, 0},
-  {0, 0, 2, 2, 0, 2, 2, 0}
+PixelLine toPixelLine(int data[SPRITEWIDTH]) {
+  PixelLine temp = PixelLine();
+  temp.data = data;
+  return temp;
+}
+
+PixelLine playerSpriteData[8] {
+  toPixelLine(new int[SPRITEWIDTH]{0, 0, 1, 0, 0, 1, 0, 0}),
+  toPixelLine(new int[SPRITEWIDTH]{0, 0, 1, 1, 1, 1, 0, 0}),
+  toPixelLine(new int[SPRITEWIDTH]{0, 0, 2, 2, 2, 2, 0, 0}),
+  toPixelLine(new int[SPRITEWIDTH]{0, 0, 4, 2, 4, 2, 0, 0}),
+  toPixelLine(new int[SPRITEWIDTH]{0, 2, 2, 2, 2, 2, 0, 0}),
+  toPixelLine(new int[SPRITEWIDTH]{0, 0, 3, 3, 3, 3, 0, 0}),
+  toPixelLine(new int[SPRITEWIDTH]{0, 0, 3, 0, 3, 0, 0, 0})
 };
 
 char selected = ' ';
 
 int CHARSIZE = 2;
-const int SPRITESIZE = 8;
-const int PIXELSIZE = 4;
 
 int playerX = 0, playerY = 0;
 
 TFT_ILI9163C tft = TFT_ILI9163C(__CS1, __DC);
+Display display = Display(&tft);
+
+Sprite playerSprite = Sprite (display, playerSpriteData);
 
 void updateGame() {
   switch (selected) {
@@ -75,10 +87,11 @@ void updateGame() {
   selected = ' ';
 }
 
-void graphicsUpdate() {
+void Display::draw() {
   drawKeypad();
-  tft.fillRect(4 * 7 * CHARSIZE + CHARSIZE, 0 , 159 - (4 * 7 * CHARSIZE + CHARSIZE), 127, BLACK);
+  getDisplay()->fillRect(4 * 7 * CHARSIZE + CHARSIZE, 0 , 159 - (4 * 7 * CHARSIZE + CHARSIZE), 127, BLACK);
 
+  playerSprite.draw(playerX + (4 * 7 * CHARSIZE + CHARSIZE), playerY, 4);
 }
 
 void drawKeypad() {
@@ -94,8 +107,9 @@ void drawKeypad() {
 
       tft.print(hexaKeys[i][j]);
     }
-    tft.fillRect(5 * 7 * CHARSIZE + CHARSIZE * 5, i * 7 * CHARSIZE + CHARSIZE * i, 5 * CHARSIZE, 7 * CHARSIZE, BLACK);
+    tft.fillRect(4 * 7 * CHARSIZE + CHARSIZE * 5, i * 7 * CHARSIZE + CHARSIZE * i, 7 * CHARSIZE, 7 * CHARSIZE, BLACK);
   }
+  tft.fillRect(0, 4 * 8 * CHARSIZE, 4 * 7 * CHARSIZE + CHARSIZE * 5, 127 - 4 * 8 * CHARSIZE, BLACK);
 }
 
 void setup() {
@@ -103,15 +117,14 @@ void setup() {
   Wire.onReceive(receiveEvent); // register event
   Serial.begin(9600);           // start serial for output
 
-  tft.begin();
+  display.begin();
   tft.setRotation(1);
   tft.setTextSize(CHARSIZE);
-  graphicsUpdate();
 }
 
 void loop() {
   if ((millis() % 1000 / 60) == 0) {
-    graphicsUpdate();
+    display.draw();
     tft.drawPixel(159, 127, RED);
   } else if ((millis() % (1000 / 30)) == 0) {
     updateGame();
@@ -128,5 +141,5 @@ void receiveEvent(int howMany) {
     selected = c;
   }
   Serial.println();
-  //graphicsUpdate();
+  drawKeypad();
 }
