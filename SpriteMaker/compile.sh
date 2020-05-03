@@ -1,8 +1,9 @@
 #!/bin/sh
 
-THE_CLASSPATH=
+THE_CLASSPATH=src/inferno
 PROGRAM_NAME=Main.java
 cd src
+
 for i in `ls ../lib/*.jar`
     do
     THE_CLASSPATH=${THE_CLASSPATH}:${i}
