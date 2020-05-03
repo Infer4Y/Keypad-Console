@@ -43,7 +43,9 @@ public class Window extends JFrame {
         add(codePane = new CodePane(), BorderLayout.LINE_END);
 
         colorPane.getAddColorButton().addActionListener(e -> {
-            //colorPane;
+            ColorTreeNode temp = new ColorTreeNode(colorPane.colorName.getText(), colorPane.getCurrentColor(), colorPane.customColorNode.getChildCount());
+            colorPane.customColorNode.add(temp);
+            colorPane.colorTree.updateUI();
         });
 
         setSize(1200, 900);

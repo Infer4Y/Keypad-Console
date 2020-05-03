@@ -12,8 +12,9 @@ public class SpriteSize extends JPanel {
     JTextField spriteSizeY = new JTextField("8");
 
     public SpriteSize(){
-        setLayout(new GridLayout(2,2));
-
+        setLayout(new GridLayout(3,2));
+        add(spriteNameLabel);
+        add(spriteName);
         add(spriteSizeXLabel);
         add(spriteSizeX);
         add(spriteSizeYLabel);
