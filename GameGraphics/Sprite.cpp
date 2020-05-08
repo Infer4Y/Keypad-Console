@@ -17,11 +17,11 @@ Sprite::Sprite(Display display, PixelLine *image, int width, int height) {
 };
 
 void Sprite::draw(int x, int y) {
-    draw(x, y, 1, DEFAULT_COLOR_PALLET);
+    draw(x, y, 1, getDefaultPallet());
 };
 
 void Sprite::draw(int x, int y, int scale) {
-    draw(x, y, scale, DEFAULT_COLOR_PALLET);
+    draw(x, y, scale, getDefaultPallet());
 };
 
 void Sprite::draw(int x, int y, ColorPallet pallet) {
@@ -39,7 +39,7 @@ void Sprite::draw(int x, int y, int scale, ColorPallet pallet) {
 };
 
 PixelLine genPixelLine(int* line){
-    PixelLine temp = PixelLine()
+    PixelLine temp = PixelLine();
     temp.data = line;
     return temp;
 }

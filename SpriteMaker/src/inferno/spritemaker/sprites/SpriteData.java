@@ -1,5 +1,6 @@
 package inferno.spritemaker.sprites;
 
+import inferno.spritemaker.Main;
 import inferno.spritemaker.ui.Pixel;
 
 import java.util.*;
@@ -28,12 +29,12 @@ public class SpriteData {
     }
 
     public String toCode(String text){
-        String builder = "Sprite "+text+" = Sprite(new PixelLine [] {\n";
+        String builder = "Sprite "+text+" = Sprite(new PixelLine [\"+Main.window.spriteSize.getSpriteHeight()+\"] {\n";
         int[][] spriteData = dataToArrays();
         for (int i = 0; i < spriteData.length; i++) {
-            builder+="\tgenPixelLine(";
+            builder+="\tgenPixelLine(new int["+Main.window.spriteSize.getSpriteWidth()+"]{";
             for (int j = 0; j < spriteData[i].length; j++) {
-                builder+=spriteData[i][j]+((j == spriteData[i].length-1) ? ")"+((i == spriteData.length-1) ? "": ",")+"\n" : ",");
+                builder+=spriteData[i][j]+((j == spriteData[i].length-1) ? "})"+((i == spriteData.length-1) ? "": ",")+"\n" : ",");
             }
         }
         builder+=("});\n");

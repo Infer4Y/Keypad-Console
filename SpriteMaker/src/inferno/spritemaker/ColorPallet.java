@@ -24,13 +24,13 @@ public class ColorPallet {
     }
 
     public String toCode(){
-        String builder = ("ColorPallet " + Main.window.getSpriteName() + " = ColorPallet(new Color["+colorMap.keySet().size()+"]) {\n");
+        String builder = ("ColorPallet " + Main.window.getSpriteName() + "ColorPallet = ColorPallet(new Color["+colorMap.keySet().size()+"] {\n");
 
         for (int key : colorMap.keySet()){
             builder+=("\tColor("+key+", 0x"+Integer.toHexString(colorMap.get(key))+"),\n");
         }
 
-        builder+=("};\n");
+        builder+=("});\n");
 
         return isdefault ? "\n" : builder;
     }

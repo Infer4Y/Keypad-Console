@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Window extends JFrame {
-    private SpriteSize spriteSize;
+    public SpriteSize spriteSize;
     private JButton spriteConfirmButton;
 
     private ColorPane colorPane;

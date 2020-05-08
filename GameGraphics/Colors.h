@@ -6,12 +6,12 @@
 class Color {
 	public:
 		Color(int,int16_t); // ID, COLOR
-		int getID() = _ID;
-		int16_t getColor() = _COLOR;
+		int getID() {return _ID;};
+		int16_t getColor() {return _COLOR;};
 	private:
 		int _ID;
 		int16_t _COLOR;
-}
+};
 
 class ColorPallet {
 	public:
@@ -19,26 +19,25 @@ class ColorPallet {
 		int16_t getColorFromID(int); // gets color needed from id
 	private:
 		Color *_colors;
-}
+};
+
+#define BLACK           0x0000
+#define DARK_BLUE       0x0029
+#define DARK_RED        0x4800
+#define DARK_GREEN      0x0240
+#define MAGENTA         0xF81F
+#define PURPLE          0x2009
+#define ORANGE          0xFC40
+#define BROWN           0x4900
+#define WHITE           0xFFFF
+#define BLUE            0x001F
+#define RED             0xF800
+#define GREEN           0x07E0
+#define PINK            0xFC5E
+#define CYAN            0x07FF
+#define YELLOW          0xFFE0
 
 int16_t getColorFromRef(int id);
 ColorPallet getDefaultPallet();
 
-#define BLACK      getColorFromRef(0);
-#define DARK_BLUE  getColorFromRef(1);
-#define DARK_RED   getColorFromRef(2);
-#define DARK_GREEN getColorFromRef(3);
-#define MAGENTA    getColorFromRef(4);
-#define PURPLE     getColorFromRef(5);
-#define ORANGE     getColorFromRef(6);
-#define BROWN      getColorFromRef(7);
-#define WHITE      getColorFromRef(8);
-#define BLUE       getColorFromRef(9;
-#define RED        getColorFromRef(10);
-#define GREEN      getColorFromRef(11);
-#define PINK       getColorFromRef(12);
-#define CYAN       getColorFromRef(13);
-#define YELLOW     getColorFromRef(14);
-
-#define DEFAULT_COLOR_PALLET getDefaultPallet();
 #endif
