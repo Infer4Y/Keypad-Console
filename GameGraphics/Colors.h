@@ -21,6 +21,8 @@ class ColorPallet {
 		Color *_colors;
 };
 
+#define ARRAY_SIZE(array) ((sizeof(array))/(sizeof(int)))
+
 #define BLACK           0x0000
 #define DARK_BLUE       0x0029
 #define DARK_RED        0x4800

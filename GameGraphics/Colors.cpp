@@ -1,6 +1,8 @@
 #include "Colors.h"
 #include "Arduino.h"
 
+
+
 Color::Color(int ID, int16_t color){
   _ID = ID;
   _COLOR = color;
@@ -11,14 +13,8 @@ ColorPallet::ColorPallet(Color* colors){
 };
 
 int16_t ColorPallet::getColorFromID(int id){
-  int16_t colorFound = 0x0000;
-
-  for (int i = 0; i < sizeof(_colors); i++){
-    if(_colors[i].getID() == id){ 
-      colorFound = _colors[i].getColor();
-    }
-  }
-
+  int16_t colorFound = (sizeof(_colors) > id) ? _colors[id].getColor() : 0x0000;
+  
   return colorFound;
 };
 

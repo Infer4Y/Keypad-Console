@@ -29,11 +29,13 @@ void Sprite::draw(int x, int y, ColorPallet pallet) {
 };
 
 void Sprite::draw(int x, int y, int scale, ColorPallet pallet) {
+    Serial.println("X : " + String(x) + ", Y : ," + String(y) + ", Scale : " + String(scale));
+    
     for (int i = 0; i < _height; i++) {
         for (int j = 0; j < _width; j++) {
-            int offX = (i != 0) ? scale : 0;
-            int offY = (j != 0) ? scale : 0;
-            _display.getDisplay()->fillRect(x + i + offX, y + j + offY, scale, scale, pallet.getColorFromID(_image[j].data[i]));
+            int offX = (j != 0) ? scale : 0;
+            int offY = (i != 0) ? scale : 0;
+            _display.getDisplay()->fillRect(x + j + offX, y + i + offY, scale, scale, pallet.getColorFromID(_image[i].data[j]));
         }
     }
 };
