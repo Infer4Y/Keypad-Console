@@ -1,6 +1,4 @@
 #include <Adafruit_GFX.h>
-#include <gfxfont.h>
-
 #include <Wire.h>
 #include <SPI.h>
 

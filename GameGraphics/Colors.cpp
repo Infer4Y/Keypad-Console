@@ -15,7 +15,7 @@ int16_t ColorPallet::getColorFromID(int id){
 
   for (int i = 0; i < sizeof(_colors); i++){
     if(_colors[i].getID() == id){ 
-      return _colors[i].getColor();
+      colorFound = _colors[i].getColor();
     }
   }
 
@@ -27,17 +27,17 @@ ColorPallet defaultColorPallet = ColorPallet (new Color[15]{
   Color(1, DARK_BLUE), //DARK BLUE
   Color(2, DARK_RED), //DARK RED
   Color(3, DARK_GREEN), //DARK GREEN
-  Color(0, MAGENTA), //MAGENTA
-  Color(4, PURPLE), //PURPLE
-  Color(5, ORANGE), //ORANGE
-  Color(6, BROWN), //BROWN
-  Color(7, WHITE), //WHITE
-  Color(8, BLUE), //BLUE
-  Color(9, RED), //RED
-  Color(10, GREEN), //GREEN
-  Color(11, PINK), //PINK
-  Color(12, CYAN), //CYAN
-  Color(13, YELLOW)  //YELLOW
+  Color(4, MAGENTA), //MAGENTA
+  Color(5, PURPLE), //PURPLE
+  Color(6, ORANGE), //ORANGE
+  Color(7, BROWN), //BROWN
+  Color(8, WHITE), //WHITE
+  Color(9, BLUE), //BLUE
+  Color(10, RED), //RED
+  Color(11, GREEN), //GREEN
+  Color(12, PINK), //PINK
+  Color(13, CYAN), //CYAN
+  Color(14, YELLOW)  //YELLOW
 });
 
 int16_t getColorFromRef(int id) {
