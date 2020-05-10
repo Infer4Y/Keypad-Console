@@ -35,7 +35,7 @@ void Sprite::draw(int x, int y, int scale, ColorPallet pallet) {
             int offY = (i != 0) ? scale : 0;
         for (int j = 0; j < _width; j++) {
             int offX = (j != 0) ? scale : 0;
-            _display.getDisplay()->fillRect(x + j + offX, y + i + offY, scale, scale, pallet.getColorFromID(int(_image[i].data[j])));
+            _display.getDisplay()->fillRect(x + j * offX, y + i * offY, scale, scale, pallet.getColorFromID(int(_image[i].data[j])));
         }
     }
 };
