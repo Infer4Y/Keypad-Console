@@ -24,20 +24,15 @@ char hexaKeys[ROWS][COLS] = {
   {'*', '0', '#', 'D'}
 };
 
-PixelLine toPixelLine(int data[SPRITEWIDTH]) {
-  PixelLine temp = PixelLine();
-  temp.data = data;
-  return temp;
-}
-
 PixelLine playerSpriteData[8] {
-  toPixelLine(new int[SPRITEWIDTH]{0, 0, 1, 0, 0, 1, 0, 0}),
-  toPixelLine(new int[SPRITEWIDTH]{0, 0, 1, 1, 1, 1, 0, 0}),
-  toPixelLine(new int[SPRITEWIDTH]{0, 0, 2, 2, 2, 2, 0, 0}),
-  toPixelLine(new int[SPRITEWIDTH]{0, 0, 4, 2, 4, 2, 0, 0}),
-  toPixelLine(new int[SPRITEWIDTH]{0, 2, 2, 2, 2, 2, 0, 0}),
-  toPixelLine(new int[SPRITEWIDTH]{0, 0, 3, 3, 3, 3, 0, 0}),
-  toPixelLine(new int[SPRITEWIDTH]{0, 0, 3, 0, 3, 0, 0, 0})
+  genPixelLine(new int[8]{0, 0, 1, 0, 0, 1, 0, 0}),
+  genPixelLine(new int[8]{0, 0, 1, 1, 1, 1, 0, 0}),
+  genPixelLine(new int[8]{0, 0, 2, 2, 2, 2, 0, 0}),
+  genPixelLine(new int[8]{0, 0, 4, 2, 4, 2, 0, 0}),
+  genPixelLine(new int[8]{0, 2, 2, 2, 2, 2, 0, 0}),
+  genPixelLine(new int[8]{0, 0, 3, 3, 3, 3, 0, 0}),
+  genPixelLine(new int[8]{0, 0, 3, 0, 3, 0, 0, 0}),
+  genPixelLine(new int[8]{0, 0, 3, 0, 3, 0, 0, 0})
 };
 
 char selected = ' ';

@@ -13,27 +13,27 @@ ColorPallet::ColorPallet(Color* colors){
 };
 
 int16_t ColorPallet::getColorFromID(int id){
-  int16_t colorFound = (sizeof(_colors) > id) ? _colors[id].getColor() : 0x0000;
-  
+  int16_t colorFound = _colors[id].getColor();
+  Serial.println(colorFound);
   return colorFound;
 };
 
 ColorPallet defaultColorPallet = ColorPallet (new Color[15]{
-  Color(0, BLACK), //BLACK
-  Color(1, DARK_BLUE), //DARK BLUE
-  Color(2, DARK_RED), //DARK RED
-  Color(3, DARK_GREEN), //DARK GREEN
-  Color(4, MAGENTA), //MAGENTA
-  Color(5, PURPLE), //PURPLE
-  Color(6, ORANGE), //ORANGE
-  Color(7, BROWN), //BROWN
-  Color(8, WHITE), //WHITE
-  Color(9, BLUE), //BLUE
-  Color(10, RED), //RED
-  Color(11, GREEN), //GREEN
-  Color(12, PINK), //PINK
-  Color(13, CYAN), //CYAN
-  Color(14, YELLOW)  //YELLOW
+  Color(0, 0x0000), //BLACK
+  Color(1, 0x0029), //DARK BLUE
+  Color(2, 0x4800), //DARK RED
+  Color(3, 0x0240), //DARK GREEN
+  Color(4, 0xF81F), //MAGENTA
+  Color(5, 0x2009), //PURPLE
+  Color(6, 0xFC40), //ORANGE
+  Color(7, 0x4900), //BROWN
+  Color(8, 0xFFFF), //WHITE
+  Color(9, 0x001F), //BLUE
+  Color(10, 0xF800), //RED
+  Color(11, 0x07E0), //GREEN
+  Color(12, 0xFC5E), //PINK
+  Color(13, 0x07FF), //CYAN
+  Color(14, 0xFFE0)  //YELLOW
 });
 
 int16_t getColorFromRef(int id) {
